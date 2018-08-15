@@ -3,12 +3,12 @@ package com.lung.getdata.server;
 import com.lung.getdata.mapper.CsvMapper;
 import com.lung.getdata.pojo.*;
 import com.lung.getdata.utils.DateFormatTool;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 public class CsvServer {
-
+    private Logger log = org.slf4j.LoggerFactory.getLogger(CsvServer.class);
     @Resource
     private CsvMapper csvMapper;
 
@@ -38,7 +38,9 @@ public class CsvServer {
             rowList.add(article.getId());
             rowList.add(article.getArtId());
             rowList.add(article.getTitle());
-            String link = article.getLink().replaceAll("/jcr:content", ".html");
+            String link = article.getLink().replaceAll("/content/ufs/zh/","").replaceAll("/jcr:content", ".html");
+            if(link.startsWith("jcr:content"))
+                link = "/";
             rowList.add(link);
             if(!article.getLink().contains("/banners") && (link.contains("/recipes") || link.contains("hot-recipe"))) {
                 rowList.add("recipe");
@@ -99,7 +101,7 @@ public class CsvServer {
             rowList.add(comment.getArtid());
             rowList.add(comment.getOpenid());
             rowList.add(comment.getParentid());
-            rowList.add(comment.getContent());
+            rowList.add(comment.getContent().replaceAll("\r|\n|\t",""));
             rowList.add(comment.getCommentNumers());
             rowList.add(comment.getPraiseNumers());
             rowList.add(comment.getIsdisplay());
@@ -113,7 +115,7 @@ public class CsvServer {
             rowList.add(comment.getHotCorder());
             rowList.add(comment.getSptFor());
             rowList.add(comment.getLabels());
-            rowList.add(comment.getTitle());
+            rowList.add(comment.getTitle().replaceAll("\r|\n|\t",""));
             rowList.add(comment.getAid());
             rowList.add(comment.getImages());
             rowList.add(comment.getType());

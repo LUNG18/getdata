@@ -84,8 +84,6 @@ public class CsvController {
         return "success";
     }
 
-
-
     @RequestMapping("tables")
     public String getTables(){
         this.getAllComments();

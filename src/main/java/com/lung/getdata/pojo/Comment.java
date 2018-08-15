@@ -30,6 +30,40 @@ public class Comment {
     private Integer subjectId;
     private Integer bookTime;
 
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", artid=" + artid +
+                ", openid=" + openid +
+                ", parentid=" + parentid +
+                ", commentNumers=" + commentNumers +
+                ", praiseNumers=" + praiseNumers +
+                ", isdisplay=" + isdisplay +
+                ", isread=" + isread +
+                ", createdAt=" + createdAt +
+                ", lastModified=" + lastModified +
+                ", opStatus=" + opStatus +
+                ", isFromAdmin=" + isFromAdmin +
+                ", corder=" + corder +
+                ", findCorder=" + findCorder +
+                ", hotCorder=" + hotCorder +
+                ", sptFor=" + sptFor +
+                ", labels=" + labels +
+                ", title=" + title +
+                ", content=" + content +
+                ", aid=" + aid +
+                ", images=" + images +
+                ", type=" + type +
+                ", publishAt=" + publishAt +
+                ", tags=" + tags +
+                ", isFollowed=" + isFollowed +
+                ", groupid=" + groupid +
+                ", subjectId=" + subjectId +
+                ", bookTime=" + bookTime +
+                "}";
+    }
+
     public Integer getPraiseNumers() {
         return praiseNumers;
     }
